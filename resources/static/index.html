@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="js/stomp.js" type="module" defer></script>
+
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+
+    <div id="username-input-wrapper">
+        <label>
+            <input id="input-username" type="text"  placeholder="Enter username..." />
+            <button id="send-username-btn" type="submit">Enter Chat</button>
+        </label>
+    </div>
+
+    <div id="chat-wrapper" class="hidden">
+
+        <div class="users-wrapper">
+            <div id="users"></div>
+            <div id="public-chat-btn" class="public selected">Public chat</div>
+        </div>
+
+        <div id="messages">
+            <div id="chat-with">Public chat</div>
+        </div>
+
+        <div id="message-input-wrapper">
+            <label>
+                <input id="input-msg" type="text" placeholder="Type a message..." />
+                <button id="send-msg-btn" type="submit">&#10148;</button>
+            </label>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

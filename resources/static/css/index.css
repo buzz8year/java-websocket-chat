@@ -1,0 +1,189 @@
+html {
+    width: 100%;
+    height: 100vh;
+    font-family: monospace;
+    background-color: #334;
+    color: #fff
+}
+
+html, body {
+    width: 100%;
+    height: 100vh;
+    position: relative
+    padding: 0;
+    margin: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+div#username-input-wrapper {
+    position: relative;
+    float: none;
+    margin: auto;
+    text-align: center;
+}
+
+.users-wrapper {
+    float: left;
+    position: relative;
+    width: 20%;
+    height: 100vh;
+    overflow: hidden;
+    background: #f0f0f010;
+}
+
+div#users {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 50px);
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.new-message-counter {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 10px;
+    background-color: #ffffff20;
+    color: #fff;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.user-container, .public {
+    height: 50px;
+    line-height: 50px;
+    padding-left: 30px;
+    box-shadow: inset 0 -1px 0 #00000010;
+    background-color: #eaeaea10;
+    position: relative;
+}
+
+.user-container:hover, .public:hover {
+    background-color: #eee;
+}
+
+.user-container.selected, .public.selected {
+    background-color: #08d;
+    box-shadow: none;
+    color: #fff;
+}
+
+div#messages {
+    float: left;
+    position: relative;
+    width: calc(80% - 60px);
+    height: calc(100vh - 130px);
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 50px 30px 30px;
+}
+
+div#chat-with {
+    position: absolute;
+    width: 100%;
+    top:0;
+    left: 0;
+    background-color: #fafafa05;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+}
+
+.message-container {
+    position: relative;
+    display: block;
+    height: auto;
+    width: 100%;
+    float: left;
+    white-space: pre-wrap;
+    padding: 0 10px;
+}
+
+.message {
+    float: left;
+    min-height: 30px;
+    width: 60%;
+    white-space: pre-wrap;
+    line-break: anywhere;
+}
+
+.sender {
+    position: relative;
+    color: #09e;
+    float: left;
+    width: 150px;
+}
+
+.date {
+    position: relative;
+    color: #ccc;
+    float: right;
+}
+
+#message-input-wrapper {
+    position: relative;
+    width: 80%;
+    height: 50px;
+    display: block;
+    float: left;
+    overflow: hidden;
+}
+
+input#input-msg {
+    position: relative;
+    width: calc(100% - 30px);
+    height: 50px;
+    display: block;
+    padding: 0px;
+    padding-left: 30px;
+    color: #fff;
+    border: none;
+    background-color: #f5f5f510;
+    line-height: 50px;
+    overflow: hidden;
+    font-family: monospace;
+}
+
+button#send-msg-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 50px;
+    width: 60px;
+    border: none;
+    color: #09e;
+    font-size: 30px;
+    background-color: transparent;
+}
+
+div#username-input-wrapper {
+    margin-top: 100px;
+}
+
+input#input-username {
+    position: relative;
+    width: 200px;
+    height: 20px;
+    border: none;
+    padding: 10px;
+    padding-left: 15px;
+    display: inline-block;
+    font-family: monospace;
+    background-color: #ffffff05;
+    color:#fff;
+}
+
+button#send-username-btn {
+    background-color: #ffffff05;
+    border: 1px solid #ffffff05;
+    font-family: monospace;
+    padding: 11px 20px;
+    color: #fff;
+}

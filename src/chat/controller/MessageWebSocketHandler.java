@@ -1,0 +1,49 @@
+package chat.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.socket.CloseStatus;
+import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketSession;
+import org.springframework.web.socket.handler.TextWebSocketHandler;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+@Controller
+public class MessageWebSocketHandler extends TextWebSocketHandler
+{
+    private final List<WebSocketSession> sessions = new CopyOnWriteArrayList<>();
+    private final Map<String, Double> messages = new ConcurrentHashMap<>();
+
+    private void broadcastMessage() throws IOException
+    {
+        TextMessage message = new TextMessage(messages.toString());
+
+        for (WebSocketSession session : sessions)
+            session.sendMessage(message);
+    }
+
+    @Override
+    public void handleTextMessage(WebSocketSession session, TextMessage message) throws IOException
+    {
+        if ("UPDATE".equals(message.getPayload()))
+            broadcastMessage();
+    }
+
+    @Override
+    public void afterConnectionEstablished(WebSocketSession session) throws IOException
+    {
+        sessions.add(session);
+        // Send current stock prices to the new client
+        session.sendMessage(new TextMessage(messages.toString()));
+    }
+
+    @Override
+    public void afterConnectionClosed(WebSocketSession session, CloseStatus status)
+    {
+        sessions.remove(session);
+    }
+}
