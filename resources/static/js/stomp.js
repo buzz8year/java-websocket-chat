@@ -45,6 +45,44 @@ export function onConnectPrivate(to)
 }
 
 
+export function sendMessage()
+{
+    if (!Dom.getMessage() || !stompClient)
+        return;
+
+    if (privateCurrent && privateSubscription)
+        sendPrivateMessage(privateCurrent);
+
+    else sendPublicMessage();
+
+    Dom.messageInput.value = '';
+}
+
+
+function sendPublicMessage()
+{
+    let chatMessage = {
+        sender: username,
+        content: Dom.getMessage(),
+        type: 'CHAT'
+    };
+    stompClient.send('/app/chat.publicMessage', {}, JSON.stringify(chatMessage));
+}
+
+
+function sendPrivateMessage(to)
+{
+    let message = {
+        to: to,
+        sender: username,
+        content: Dom.getMessage(),
+        type: 'CHAT'
+    };
+    stompClient.send('/app/chat.privateMessage', {}, JSON.stringify(message));
+    Dom.displayMessage(message);
+}
+
+
 function subscribePublic()
 {
     if (publicHistorySubscription) publicHistorySubscription.unsubscribe();
@@ -111,6 +149,7 @@ function onMessageReceived(payload)
         Dom.displayMessage(message);
 }
 
+
 function onMessageReceivedPrivate(payload)
 {
     let message = JSON.parse(payload.body);
@@ -127,39 +166,4 @@ function onNoticeReceived(payload)
 }
 
 
-function sendPrivateMessage(to)
-{
-    let message = {
-        to: to,
-        sender: username,
-        content: Dom.getMessage(),
-        type: 'CHAT'
-    };
-    stompClient.send('/app/chat.privateMessage', {}, JSON.stringify(message));
-    Dom.displayMessage(message);
-}
 
-
-function sendPublicMessage()
-{
-    let chatMessage = {
-        sender: username,
-        content: Dom.getMessage(),
-        type: 'CHAT'
-    };
-    stompClient.send('/app/chat.publicMessage', {}, JSON.stringify(chatMessage));
-}
-
-
-export function sendMessage()
-{
-    if (!Dom.getMessage() || !stompClient)
-        return;
-
-    if (privateCurrent && privateSubscription)
-        sendPrivateMessage(privateCurrent);
-
-    else sendPublicMessage();
-
-    Dom.messageInput.value = '';
-}
