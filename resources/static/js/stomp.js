@@ -85,12 +85,16 @@ function sendPrivateMessage(to)
 
 function unsubscribe()
 {
-    if (publicHistorySubscription) publicHistorySubscription.unsubscribe();
     if (publicSubscription) publicSubscription.unsubscribe();
-
-    if (privateHistorySubscription) privateHistorySubscription.unsubscribe();
     if (privateSubscription) privateSubscription.unsubscribe();
     if (privateCurrent) privateCurrent = null;
+    unsubscribeHistory();
+}
+
+function unsubscribeHistory()
+{
+    if (publicHistorySubscription) publicHistorySubscription.unsubscribe();
+    if (privateHistorySubscription) privateHistorySubscription.unsubscribe();
 }
 
 
@@ -124,8 +128,7 @@ function onError(error)
 
 function onHistoryReceived(payload)
 {
-    if (privateHistorySubscription) privateHistorySubscription.unsubscribe();
-    if (publicHistorySubscription) publicHistorySubscription.unsubscribe();
+    unsubscribeHistory();
 
     let messages = JSON.parse(payload.body);
     if (messages) messages.forEach(m => Dom.displayMessage(m));
