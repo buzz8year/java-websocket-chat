@@ -4,16 +4,16 @@ import * as Stomp from './stomp.js';
 
 export const usernameForm = document.getElementById('username-input-wrapper');
 export const messageForm = document.getElementById('message-input-wrapper');
+export const messageButton = document.getElementById('send-msg-btn');
 export const messagesWrapper = document.getElementById('messages');
 export const chatWrapper = document.getElementById('chat-wrapper');
-export const usersWrapper = document.getElementById('users');
-export const messageButton = document.getElementById('send-msg-btn');
 export const messageInput = document.getElementById('input-msg');
+export const usersWrapper = document.getElementById('users');
 
-const loginInput = document.querySelector('#input-username');
+const chatTitle = document.getElementById('chat-with');
+const loginInput = document.getElementById('input-username');
 const loginButton = document.getElementById('send-username-btn');
 const publicButton = document.getElementById('public-chat-btn');
-const chatTitle = document.getElementById('chat-with');
 
 
 memberButtonListener(publicButton);
