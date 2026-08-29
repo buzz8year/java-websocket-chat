@@ -83,7 +83,7 @@ function sendPrivateMessage(to)
 }
 
 
-function subscribePublic()
+function unsubscribe()
 {
     if (publicHistorySubscription) publicHistorySubscription.unsubscribe();
     if (publicSubscription) publicSubscription.unsubscribe();
@@ -91,6 +91,12 @@ function subscribePublic()
     if (privateHistorySubscription) privateHistorySubscription.unsubscribe();
     if (privateSubscription) privateSubscription.unsubscribe();
     if (privateCurrent) privateCurrent = null;
+}
+
+
+function subscribePublic()
+{
+    unsubscribe();
 
     if (!notificationsSubscription) notificationsSubscription = stompClient.subscribe('/user/' + username + '/notifications', onNoticeReceived);
     if (!membersSubscription) membersSubscription = stompClient.subscribe('/queue/members', onMembersReceived);
@@ -102,12 +108,7 @@ function subscribePublic()
 
 function subscribePrivate(to)
 {
-    if (publicHistorySubscription) publicHistorySubscription.unsubscribe();
-    if (publicSubscription) publicSubscription.unsubscribe();
-
-    if (privateHistorySubscription) privateHistorySubscription.unsubscribe();
-    if (privateSubscription) privateSubscription.unsubscribe();
-    if (privateCurrent) privateCurrent = null;
+    unsubscribe();
 
     privateHistorySubscription = stompClient.subscribe('/user/' + username + '/privateHistory', onHistoryReceived);
     privateSubscription = stompClient.subscribe('/user/' + username + '/privateChat', onMessageReceivedPrivate);
