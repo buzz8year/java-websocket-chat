@@ -18,7 +18,7 @@ var privateCurrent = null;
 
 export function connect(event)
 {
-    username = document.querySelector('#input-username').value.trim();
+    username = Dom.getUsername();
     if (!username) return;
 
     Dom.chatWrapper.classList.remove('hidden');
