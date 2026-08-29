@@ -23,8 +23,9 @@ loginButtonListener();
 
 export function getUsername(event)
 {
-    document.querySelector('#input-username').value.trim();
+    return loginInput.value.trim();
 }
+
 
 export function getMessage()
 {
