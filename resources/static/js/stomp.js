@@ -120,12 +120,6 @@ function subscribePrivate(to)
 }
 
 
-function onError(error)
-{
-    console.log(error);
-}
-
-
 function onHistoryReceived(payload)
 {
     unsubscribeHistory();
@@ -167,6 +161,12 @@ function onNoticeReceived(payload)
     let message = JSON.parse(payload.body);
     if (message.sender && message.to === username)
         Dom.updateCounter(message.sender)
+}
+
+
+function onError(error)
+{
+    console.log(error);
 }
 
 
