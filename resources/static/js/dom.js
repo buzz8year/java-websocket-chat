@@ -21,6 +21,11 @@ messageButtonListener();
 loginButtonListener();
 
 
+export function getUsername(event)
+{
+    document.querySelector('#input-username').value.trim();
+}
+
 export function getMessage()
 {
     return messageInput.value.trim();
@@ -32,11 +37,6 @@ export function clearMessages()
     document.querySelectorAll('.message-container').forEach(m => m.remove());
 }
 
-
-export function clearUsername(event)
-{
-    document.querySelector('#input-username').value.trim();
-}
 
 export function updateCounter(sender)
 {
