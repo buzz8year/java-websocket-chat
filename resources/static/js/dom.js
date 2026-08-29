@@ -33,6 +33,11 @@ export function clearMessages()
 }
 
 
+export function clearUsername(event)
+{
+    document.querySelector('#input-username').value.trim();
+}
+
 export function updateCounter(sender)
 {
     let users = document.querySelector('#users');
